@@ -1,20 +1,8 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import Routes from './routes'
 
 const App = () => (
-  <>
-    <StatusBar barStyle="dark-content" />
-    <SafeAreaView>
-      <Text> Begging </Text>
-    </SafeAreaView>
-  </>
+ <Routes />
 );
 
 export default App;
