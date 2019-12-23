@@ -1,0 +1,66 @@
+{
+  "stock": [
+    {
+      "id": 1,
+      "amount": 3
+    },
+    {
+      "id": 2,
+      "amount": 5
+    },
+    {
+      "id": 3,
+      "amount": 2
+    },
+    {
+      "id": 4,
+      "amount": 1
+    },
+    {
+      "id": 5,
+      "amount": 5
+    },
+    {
+      "id": 6,
+      "amount": 10
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "title": "Nike Air Force 1 Winter GORE-TEX",
+      "price": 179.9,
+      "image": "https://images.lojanike.com.br/320x320/produto/180779_1758590_20191021183216.png"
+    },
+    {
+      "id": 2,
+      "title": "Jordan Proto-Max 720",
+      "price": 139.9,
+      "image": "https://images.lojanike.com.br/320x320/produto/180684_1777815_20191029224917.png"
+    },
+    {
+      "id": 3,
+      "title": "Jordan Proto-Max 720",
+      "price": 219.9,
+      "image": "https://images.lojanike.com.br/320x320/produto/180269_1777680_20191029224916.png"
+    },
+    {
+      "id": 5,
+      "title": "Fila Disruptor",
+      "price": 139.9,
+      "image": "https://media-wtennis.cdnedge.bluemix.net/catalog/product/cache/2/thumbnail/252x252/9df78eab33525d08d6e5fb8d27136e95/f/i/fila_d_formation_ag_13_1014782_24752_17_27625_1_20.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Puma Vikky Platform",
+      "price": 219.9,
+      "image": "https://media-wtennis.cdnedge.bluemix.net/catalog/product/cache/2/thumbnail/252x252/9df78eab33525d08d6e5fb8d27136e95/p/u/puma_vikky_platform_bdp_ag_13_1015199_25080_17_27948_1.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Adidas Qt Vult",
+      "price": 179.9,
+      "image": "https://media-wtennis.cdnedge.bluemix.net/catalog/product/cache/2/thumbnail/252x252/9df78eab33525d08d6e5fb8d27136e95/a/d/adidas_qt_vult_2_w_ag_13_1010662_21185_17_23836_1_6.jpg"
+    }
+  ]
+}
