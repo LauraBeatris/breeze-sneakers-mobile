@@ -5,10 +5,15 @@ import { Provider } from 'react-redux';
 import Routes from './routes';
 
 import store from './store';
+import navigation from './services/navigation';
 
 const App = () => (
     <Provider store={store}>
-        <Routes />
+        <Routes
+            ref={navigatorRef => {
+                navigation.setTopLevelNavigator(navigatorRef);
+            }}
+        />
     </Provider>
 );
 
