@@ -1,4 +1,5 @@
 import { call, put, select, all, takeLatest } from 'redux-saga/effects';
+import { Alert } from 'react-native';
 import api from '../../../services/api';
 import { addToCartSuccess, updateAmountSuccess } from './actions';
 
@@ -20,6 +21,7 @@ export function* addToCart({ payload }) {
         console.tron.warn(
             `WARNING - The product ${id} is not available in the stock`
         );
+        Alert.alert(null, "This product isn't available in the stock");
         return;
     }
 
@@ -46,12 +48,11 @@ export function* updateAmount({ payload }) {
     const stockAmount = stock.data.amount;
 
     if (amount > stockAmount) {
-        console.tron.warn(
-            `WARNING - The product ${id} is not available in the stock`
-        );
-    } else {
-        yield put(updateAmountSuccess(id, amount));
+        console.tron.warn(`WARNING - The product isn't available in the stock`);
+        Alert.alert(null, "This product isn't available in the stock");
+        return;
     }
+    yield put(updateAmountSuccess(id, amount));
 }
 
 export default all([
