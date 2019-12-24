@@ -29,6 +29,7 @@ export const SneekerImage = styled.Image`
 `;
 
 export const SneekerTitle = styled.Text`
+    font-family: 'BebasNeue-Regular';
     color: ${colors.dark};
     font-size: 17px;
     text-align: left;
@@ -36,6 +37,7 @@ export const SneekerTitle = styled.Text`
 `;
 
 export const SneekerPrice = styled.Text`
+    font-family: 'BebasNeue-Regular';
     color: ${colors.dark};
     font-size: 20px;
     font-weight: bold;
@@ -56,6 +58,7 @@ export const ProductAmount = styled.View`
     padding: 10px;
     background: ${darken(0.5, '#333')};
     border-radius: 5px;
+    font-family: 'BebasNeue-Regular';
 `;
 
 export const AddButtonText = styled.Text`
@@ -63,8 +66,10 @@ export const AddButtonText = styled.Text`
     color: ${colors.primary};
     font-weight: bold;
     text-align: center;
+    font-family: 'BebasNeue-Regular';
 `;
 
 export const ProductAmountText = styled.Text`
     color: ${colors.primary};
+    font-family: 'BebasNeue-Regular';
 `;

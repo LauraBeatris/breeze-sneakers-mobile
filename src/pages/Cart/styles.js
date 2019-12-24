@@ -42,10 +42,12 @@ export const ProductInfoContainer = styled.View`
 `;
 export const ProductTitle = styled.Text`
     font-size: 15px;
+    font-family: 'BebasNeue-Regular';
 `;
 export const ProductPrice = styled.Text`
     font-size: 17px;
     font-weight: bold;
+    font-family: 'BebasNeue-Regular';
 `;
 
 export const ProductFooterContainer = styled.View`
@@ -82,18 +84,21 @@ export const CartFooterTitle = styled.Text`
     font-size: 23px;
     font-weight: bold;
     text-transform: uppercase;
+    font-family: 'BebasNeue-Regular';
 `;
 
 export const SubTotal = styled.Text`
     color: ${colors.dark};
     font-size: 17px;
     font-weight: bold;
+    font-family: 'BebasNeue-Regular';
 `;
 
 export const Total = styled.Text`
     color: ${colors.dark};
     font-size: 33px;
     font-weight: bold;
+    font-family: 'BebasNeue-Regular';
 `;
 
 export const SubmitOrderButton = styled(RectButton)`
@@ -111,6 +116,7 @@ export const SubmitOrderButtonText = styled.Text`
     font-weight: bold;
     color: #fff;
     text-align: center;
+    font-family: 'BebasNeue-Regular';
 `;
 
 export const ProductControlButton = styled.TouchableOpacity``;
@@ -124,4 +130,5 @@ export const EmptyText = styled.Text`
     font-size: 24px;
     font-weight: bold;
     margin-top: 18px;
+    font-family: 'BebasNeue-Regular';
 `;

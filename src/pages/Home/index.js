@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import { formatMoney } from '../../util/format';
+
 import * as CartActions from '../../store/modules/cart/actions';
 
 import {
@@ -17,8 +19,6 @@ import {
     SneekerImage,
     SneekerTitle,
     SneekerPrice,
-    EmptyContainer,
-    EmptyText,
 } from './styles';
 import { Background } from '../../styles/background';
 import background from '../../assets/background.jpg';
@@ -30,7 +30,14 @@ export function Home({ addToCartRequest, amount }) {
 
     useEffect(() => {
         api.get('/products')
-            .then(res => setProducts(res.data))
+            .then(res =>
+                setProducts(
+                    res.data.map(product => ({
+                        ...product,
+                        formattedPrice: formatMoney(product.price),
+                    }))
+                )
+            )
             .catch(err => console.tron.log(err));
     }, []);
     return (
@@ -44,7 +51,10 @@ export function Home({ addToCartRequest, amount }) {
                             <Sneeker>
                                 <SneekerImage source={{ uri: item.image }} />
                                 <SneekerTitle> {item.title} </SneekerTitle>
-                                <SneekerPrice> ${item.price} </SneekerPrice>
+                                <SneekerPrice>
+                                    {' '}
+                                    {item.formattedPrice}{' '}
+                                </SneekerPrice>
                                 <AddButton>
                                     <ProductAmount>
                                         <Icon

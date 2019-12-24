@@ -21,6 +21,7 @@ export const LogoText = styled.Text`
     font-weight: bold;
     font-size: 30px;
     color: ${colors.dark};
+    font-family: 'BebasNeue-Regular';
 `;
 
 export const Description = styled(LogoText)`
@@ -28,6 +29,7 @@ export const Description = styled(LogoText)`
     font-size: 15px;
     margin-top: 5px;
     max-width: 210px;
+    font-family: 'BebasNeue-Regular';
 `;
 
 export const NextPageButtonText = styled.Text`
@@ -35,6 +37,7 @@ export const NextPageButtonText = styled.Text`
     font-size: 18px;
     font-weight: bold;
     margin-right: 10px;
+    font-family: 'BebasNeue-Regular';
 `;
 
 export const NextPageButton = styled(RectButton)`
