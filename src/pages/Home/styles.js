@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import { RectButton } from 'react-native-gesture-handler';
-import { darken, lighten, opacify, shade } from 'polished';
+import { darken } from 'polished';
 
 import colors from '../../styles/colors';
 
@@ -16,7 +16,6 @@ export const Sneekers = styled.FlatList.attrs({
 `;
 
 export const Sneeker = styled.View`
-    background: rgba(255, 255, 255, 0.8);
     padding: 10px;
     margin: 15px;
     border-radius: 4px;
