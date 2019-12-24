@@ -5,7 +5,7 @@ import { addToCartSuccess, updateAmountSuccess } from './actions';
 export function* addToCart({ payload }) {
     const { id } = payload;
 
-    // Selecting the current cart state
+    // Selecting the current cart state and finding the product with the id passed
     const productExists = yield select(state =>
         state.cart.find(product => product.id === id)
     );
@@ -30,9 +30,25 @@ export function* addToCart({ payload }) {
     }
 }
 
-export function* updateAmount({ payload }) {}
+export function* updateAmount({ payload }) {
+    const { id, amount } = payload;
+
+    // Preventing amounts that're bellow 0
+    if (amount <= 0) return;
+
+    const stock = yield call(api.get, `/stock/${id}`);
+    const stockAmount = stock.data.amount;
+
+    if (amount > stockAmount) {
+        console.tron.warn(
+            `WARNING - The product ${id} is not available in the stock`
+        );
+    } else {
+        yield put(updateAmountSuccess(id, amount));
+    }
+}
 
 export default all([
     takeLatest('@cart/add_request', addToCart),
-    takeLatest('@cart/update_request', updateAmount),
+    takeLatest('@cart/update_amount_request', updateAmount),
 ]);

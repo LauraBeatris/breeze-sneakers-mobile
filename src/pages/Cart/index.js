@@ -33,7 +33,14 @@ import {
 import { Background } from '../../styles/background';
 import background from '../../assets/background.jpg';
 
-export function Cart({ cart, deleteFromCart }) {
+export function Cart({ cart, deleteFromCart, updateAmountRequest }) {
+    function decrement(id, amount) {
+        updateAmountRequest(id, amount - 1);
+    }
+
+    function increment(id, amount) {
+        updateAmountRequest(id, amount + 1);
+    }
     return (
         <>
             <Background source={background} />
@@ -73,7 +80,14 @@ export function Cart({ cart, deleteFromCart }) {
 
                                 <ProductFooterContainer>
                                     <AmountContainer>
-                                        <ProductControlButton>
+                                        <ProductControlButton
+                                            onPress={() =>
+                                                increment(
+                                                    product.id,
+                                                    product.amount
+                                                )
+                                            }
+                                        >
                                             <Icon
                                                 name="add-circle-outline"
                                                 size={15}
@@ -84,7 +98,14 @@ export function Cart({ cart, deleteFromCart }) {
                                         <AmountInput
                                             value={String(product.amount)}
                                         />
-                                        <ProductControlButton>
+                                        <ProductControlButton
+                                            onPress={() =>
+                                                decrement(
+                                                    product.id,
+                                                    product.amount
+                                                )
+                                            }
+                                        >
                                             <Icon
                                                 name="remove-circle-outline"
                                                 size={15}
