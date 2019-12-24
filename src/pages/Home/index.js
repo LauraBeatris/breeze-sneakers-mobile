@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+
+import * as CartActions from '../../store/modules/cart/actions';
 
 import {
     Container,
@@ -12,13 +17,15 @@ import {
     SneekerImage,
     SneekerTitle,
     SneekerPrice,
+    EmptyContainer,
+    EmptyText,
 } from './styles';
 import { Background } from '../../styles/background';
 import background from '../../assets/background.jpg';
 
 import api from '../../services/api';
 
-export default function Home() {
+export function Home({ addToCartSuccess }) {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
@@ -47,7 +54,9 @@ export default function Home() {
                                         />
                                         <ProductAmountText>6</ProductAmountText>
                                     </ProductAmount>
-                                    <AddButtonText>
+                                    <AddButtonText
+                                        onPress={() => addToCartSuccess(item)}
+                                    >
                                         {' '}
                                         Add to the cart{' '}
                                     </AddButtonText>
@@ -61,3 +70,12 @@ export default function Home() {
         </>
     );
 }
+
+Home.propTypes = {
+    addToCartSuccess: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = dispatch =>
+    bindActionCreators(CartActions, dispatch);
+
+export default connect(null, mapDispatchToProps)(Home);

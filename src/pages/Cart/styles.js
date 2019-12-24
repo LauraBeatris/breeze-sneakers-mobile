@@ -5,10 +5,9 @@ import colors from '../../styles/colors';
 export const Container = styled.View`
     padding: 12px;
     /* background: #444; */
-    flex: 1;
 `;
 
-export const CartContainer = styled.View`
+export const CartContainer = styled.ScrollView`
     background: ${colors.primary};
     padding: 12px;
     border-radius: 6px;
@@ -96,6 +95,7 @@ export const SubmitOrderButton = styled(RectButton)`
     border: 1px solid #333;
     border-radius: 3px;
     margin-top: 20px;
+    margin-bottom: 35px;
 `;
 
 export const SubmitOrderButtonText = styled.Text`
@@ -104,4 +104,17 @@ export const SubmitOrderButtonText = styled.Text`
     font-weight: bold;
     color: #fff;
     text-align: center;
+`;
+
+export const ProductControlButton = styled.TouchableOpacity``;
+
+export const EmptyContainer = styled.View`
+    align-items: center;
+    justify-content: center;
+`;
+
+export const EmptyText = styled.Text`
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 18px;
 `;

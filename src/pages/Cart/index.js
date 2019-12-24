@@ -1,7 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { RectButton } from 'react-native-gesture-handler';
-import { Text } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+
+import { FlatList } from 'react-native';
+import * as CartActions from '../../store/modules/cart/actions';
 
 import {
     Container,
@@ -21,107 +26,80 @@ import {
     Total,
     SubmitOrderButton,
     SubmitOrderButtonText,
+    ProductControlButton,
+    EmptyContainer,
+    EmptyText,
 } from './styles';
 import { Background } from '../../styles/background';
 import background from '../../assets/background.jpg';
 
-export default function Main() {
+export function Cart({ cart }) {
     return (
         <>
             <Background source={background} />
             <Container>
                 <CartContainer>
-                    <Product>
-                        {/* Beggining of main product informations - Image, Title, Price, Subtotal and Delete Option */}
-                        <MainWrapperProduct>
-                            <ProductImage
-                                source={{
-                                    uri:
-                                        'https://media-wtennis.cdnedge.bluemix.net/catalog/product/cache/2/thumbnail/252x252/9df78eab33525d08d6e5fb8d27136e95/a/d/adidas_qt_vult_2_w_ag_13_1010662_21185_17_23836_1_6.jpg',
-                                }}
+                    {cart.length > 0 ? (
+                        cart.map(product => (
+                            <Product key={product.id}>
+                                {/* Beggining of main product informations - Image, Title, Price, Subtotal and Delete Option */}
+                                <MainWrapperProduct>
+                                    <ProductImage
+                                        source={{
+                                            uri: product.image,
+                                        }}
+                                    />
+                                    <ProductInfoContainer>
+                                        <ProductTitle>
+                                            {product.title}
+                                        </ProductTitle>
+                                        <ProductPrice>
+                                            {product.price}
+                                        </ProductPrice>
+                                    </ProductInfoContainer>
+                                    <ProductControlButton>
+                                        <Icon
+                                            name="delete-forever"
+                                            size={25}
+                                            color="#999"
+                                        />
+                                    </ProductControlButton>
+                                </MainWrapperProduct>
+                                {/* End of main product informations - Image, Title, Price, Subtotal and Delete Option */}
+
+                                <ProductFooterContainer>
+                                    <AmountContainer>
+                                        <ProductControlButton>
+                                            <Icon
+                                                name="add-circle-outline"
+                                                size={15}
+                                                color="#f44336"
+                                            />
+                                        </ProductControlButton>
+
+                                        <AmountInput />
+                                        <ProductControlButton>
+                                            <Icon
+                                                name="remove-circle-outline"
+                                                size={15}
+                                                color="#f44336"
+                                            />
+                                        </ProductControlButton>
+                                    </AmountContainer>
+                                    <SubTotal>$534.34</SubTotal>
+                                </ProductFooterContainer>
+                            </Product>
+                        ))
+                    ) : (
+                        <EmptyContainer>
+                            <Icon
+                                name="remove-shopping-cart"
+                                size={64}
+                                color="#eee"
                             />
-                            <ProductInfoContainer>
-                                <ProductTitle>Adidas Qt Vult</ProductTitle>
-                                <ProductPrice>$324.23</ProductPrice>
-                            </ProductInfoContainer>
-                            <RectButton>
-                                <Icon
-                                    name="delete-forever"
-                                    size={25}
-                                    color="#999"
-                                />
-                            </RectButton>
-                        </MainWrapperProduct>
-                        {/* End of main product informations - Image, Title, Price, Subtotal and Delete Option */}
-
-                        <ProductFooterContainer>
-                            <AmountContainer>
-                                <RectButton>
-                                    <Icon
-                                        name="add-circle-outline"
-                                        size={15}
-                                        color="#f44336"
-                                    />
-                                </RectButton>
-
-                                <AmountInput />
-                                <RectButton>
-                                    <Icon
-                                        name="remove-circle-outline"
-                                        size={15}
-                                        color="#f44336"
-                                    />
-                                </RectButton>
-                            </AmountContainer>
-                            <SubTotal>$534.34</SubTotal>
-                        </ProductFooterContainer>
-                    </Product>
-
-                    <Product>
-                        {/* Beggining of main product informations - Image, Title, Price, Subtotal and Delete Option */}
-                        <MainWrapperProduct>
-                            <ProductImage
-                                source={{
-                                    uri:
-                                        'https://media-wtennis.cdnedge.bluemix.net/catalog/product/cache/2/thumbnail/252x252/9df78eab33525d08d6e5fb8d27136e95/a/d/adidas_qt_vult_2_w_ag_13_1010662_21185_17_23836_1_6.jpg',
-                                }}
-                            />
-                            <ProductInfoContainer>
-                                <ProductTitle>Adidas Qt Vult</ProductTitle>
-                                <ProductPrice>$324.23</ProductPrice>
-                            </ProductInfoContainer>
-                            <RectButton>
-                                <Icon
-                                    name="delete-forever"
-                                    size={25}
-                                    color="#999"
-                                />
-                            </RectButton>
-                        </MainWrapperProduct>
-                        {/* End of main product informations - Image, Title, Price, Subtotal and Delete Option */}
-
-                        <ProductFooterContainer>
-                            <AmountContainer>
-                                <RectButton>
-                                    <Icon
-                                        name="add-circle-outline"
-                                        size={15}
-                                        color="#f44336"
-                                    />
-                                </RectButton>
-
-                                <AmountInput value="2" />
-                                <RectButton>
-                                    <Icon
-                                        name="remove-circle-outline"
-                                        size={15}
-                                        color="#f44336"
-                                    />
-                                </RectButton>
-                            </AmountContainer>
-                            <SubTotal>$534.34</SubTotal>
-                        </ProductFooterContainer>
-                    </Product>
+                            <EmptyText>Your cart is empty</EmptyText>
+                        </EmptyContainer>
+                    )}
 
                     <CartFooter>
                         <CartFooterTitle>Total</CartFooterTitle>
@@ -137,3 +115,16 @@ export default function Main() {
         </>
     );
 }
+
+Cart.propTypes = {
+    cart: PropTypes.array.isRequired,
+};
+
+const mapStateToProps = state => ({
+    cart: state.cart,
+});
+
+const mapDispatchToProps = dispatch =>
+    bindActionCreators(CartActions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

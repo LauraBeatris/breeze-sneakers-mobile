@@ -11,21 +11,21 @@ import Cart from './pages/Cart';
 import Header from './components/Header';
 
 const Routes = createAppContainer(
-  createStackNavigator(
-    {
-      Main,
-      Home,
-      Cart,
-    },
-    {
-      defaultNavigationOptions: navigation => ({
-        header: <Header {...navigation} />,
-      }),
-      cardStyle: {
-        background: '#fff',
-      },
-    }
-  )
+    createStackNavigator(
+        {
+            Main,
+            Home,
+            Cart,
+        },
+        {
+            defaultNavigationOptions: navigation => ({
+                header: <Header {...navigation} />,
+            }),
+            cardStyle: {
+                background: '#fff',
+            },
+        }
+    )
 );
 
 export default Routes;

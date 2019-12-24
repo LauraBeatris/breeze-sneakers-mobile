@@ -1,4 +1,6 @@
 import Reactotron from 'reactotron-react-native';
+import reactotronSaga from 'reactotron-redux-saga';
+import { reactotronRedux } from 'reactotron-redux';
 import { IP_ADDRESS } from 'react-native-dotenv';
 
 /*
@@ -8,6 +10,8 @@ import { IP_ADDRESS } from 'react-native-dotenv';
 if (__DEV__) {
     const tron = Reactotron.configure()
         .useReactNative() // add all built-in react native plugins
+        .use(reactotronRedux())
+        .use(reactotronSaga())
         .connect({ host: IP_ADDRESS }); // let's connect!
     // console -> Global variable -> To give a global access to reactotron
     console.tron = tron;
