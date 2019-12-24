@@ -31,7 +31,7 @@ export function Home({ addToCartRequest, amount }) {
     useEffect(() => {
         api.get('/products')
             .then(res => setProducts(res.data))
-            .catch(err => console.log(err));
+            .catch(err => console.tron.log(err));
     }, []);
     return (
         <>

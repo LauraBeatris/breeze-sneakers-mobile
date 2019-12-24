@@ -1,10 +1,17 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 import { RectButton } from 'react-native-gesture-handler';
 import colors from '../../styles/colors';
 
 export const Container = styled.View`
     padding: 12px;
     /* background: #444; */
+    ${props =>
+        props.emptyCart &&
+        css`
+            justify-content: center;
+            align-items: center;
+            flex: 1px;
+        `}
 `;
 
 export const CartContainer = styled.ScrollView`

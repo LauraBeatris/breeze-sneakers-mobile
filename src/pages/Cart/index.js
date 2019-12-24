@@ -44,10 +44,10 @@ export function Cart({ cart, total, deleteFromCart, updateAmountRequest }) {
     return (
         <>
             <Background source={background} />
-            <Container>
-                <CartContainer>
-                    {cart.length > 0 ? (
-                        cart.map(product => (
+            <Container emptyCart={cart.length === 0}>
+                {cart.length > 0 ? (
+                    <CartContainer>
+                        {cart.map(product => (
                             <Product key={product.id}>
                                 {/* Beggining of main product informations - Image, Title, Price, Subtotal and Delete Option */}
                                 <MainWrapperProduct>
@@ -116,28 +116,27 @@ export function Cart({ cart, total, deleteFromCart, updateAmountRequest }) {
                                     <SubTotal>{product.subTotal}</SubTotal>
                                 </ProductFooterContainer>
                             </Product>
-                        ))
-                    ) : (
-                        <EmptyContainer>
-                            <Icon
-                                name="remove-shopping-cart"
-                                size={64}
-                                color="#eee"
-                            />
-                            <EmptyText>Your cart is empty</EmptyText>
-                        </EmptyContainer>
-                    )}
-
-                    <CartFooter>
-                        <CartFooterTitle>Total</CartFooterTitle>
-                        <Total>{total}</Total>
-                    </CartFooter>
-                    <SubmitOrderButton>
-                        <SubmitOrderButtonText>
-                            Finalize Order{' '}
-                        </SubmitOrderButtonText>
-                    </SubmitOrderButton>
-                </CartContainer>
+                        ))}
+                        <CartFooter>
+                            <CartFooterTitle>Total</CartFooterTitle>
+                            <Total>{total}</Total>
+                        </CartFooter>
+                        <SubmitOrderButton>
+                            <SubmitOrderButtonText>
+                                Finalize Order{' '}
+                            </SubmitOrderButtonText>
+                        </SubmitOrderButton>
+                    </CartContainer>
+                ) : (
+                    <EmptyContainer>
+                        <Icon
+                            name="remove-shopping-cart"
+                            size={64}
+                            color="#999"
+                        />
+                        <EmptyText>Your cart is empty</EmptyText>
+                    </EmptyContainer>
+                )}
             </Container>
         </>
     );
