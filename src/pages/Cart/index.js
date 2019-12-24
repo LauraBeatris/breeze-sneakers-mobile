@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { RectButton } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import { FlatList } from 'react-native';
+import { formatMoney } from '../../util/format';
+
 import * as CartActions from '../../store/modules/cart/actions';
 
 import {
@@ -33,7 +33,7 @@ import {
 import { Background } from '../../styles/background';
 import background from '../../assets/background.jpg';
 
-export function Cart({ cart, deleteFromCart, updateAmountRequest }) {
+export function Cart({ cart, total, deleteFromCart, updateAmountRequest }) {
     function decrement(id, amount) {
         updateAmountRequest(id, amount - 1);
     }
@@ -113,7 +113,7 @@ export function Cart({ cart, deleteFromCart, updateAmountRequest }) {
                                             />
                                         </ProductControlButton>
                                     </AmountContainer>
-                                    <SubTotal>$534.34</SubTotal>
+                                    <SubTotal>{product.subTotal}</SubTotal>
                                 </ProductFooterContainer>
                             </Product>
                         ))
@@ -130,7 +130,7 @@ export function Cart({ cart, deleteFromCart, updateAmountRequest }) {
 
                     <CartFooter>
                         <CartFooterTitle>Total</CartFooterTitle>
-                        <Total>$1230.24</Total>
+                        <Total>{total}</Total>
                     </CartFooter>
                     <SubmitOrderButton>
                         <SubmitOrderButtonText>
@@ -146,10 +146,19 @@ export function Cart({ cart, deleteFromCart, updateAmountRequest }) {
 Cart.propTypes = {
     cart: PropTypes.array.isRequired,
     deleteFromCart: PropTypes.func.isRequired,
+    updateAmountRequest: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
-    cart: state.cart,
+    cart: state.cart.map(product => ({
+        ...product,
+        subTotal: formatMoney(product.amount * product.price),
+    })),
+    total: formatMoney(
+        state.cart.reduce((total, product) => {
+            return total + product.price * product.amount;
+        }, 0)
+    ),
 });
 
 const mapDispatchToProps = dispatch =>

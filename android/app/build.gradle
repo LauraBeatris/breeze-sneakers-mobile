@@ -119,6 +119,14 @@ def jscFlavor = 'org.webkit:android-jsc:+'
  */
 def enableHermes = project.ext.react.get("enableHermes", false);
 
+/**
+* Use the international variant of JavaScriptCore
+* This variant includes the ICU i18n library to make APIs like `Date.toLocaleString`
+* and `String.localeCompare` work when using with locales other than en-US.
+* Note that this variant is about 6MiB larger per architecture than the default.
+*/
+def useIntlJsc = true
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
@@ -203,7 +211,7 @@ task copyDownloadableDepsToLibs(type: Copy) {
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
 
 project.ext.vectoricons = [
-    iconFontNames: [ 'FontAwesome.ttf', 'FontAwesome5_Regular.ttf', 'FontAwesome5_Brands.ttf', 'FontAwesome5_Solid.ttf', 'MaterialIcons.ttf', 'MaterialCommunityIcons.ttf'] 
+    iconFontNames: [ 'FontAwesome.ttf', 'FontAwesome5_Regular.ttf', 'FontAwesome5_Brands.ttf', 'FontAwesome5_Solid.ttf', 'MaterialIcons.ttf', 'MaterialCommunityIcons.ttf']
 ]
 
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
