@@ -33,7 +33,7 @@ import {
 import { Background } from '../../styles/background';
 import background from '../../assets/background.jpg';
 
-export function Cart({ cart }) {
+export function Cart({ cart, deleteFromCart }) {
     return (
         <>
             <Background source={background} />
@@ -57,7 +57,11 @@ export function Cart({ cart }) {
                                             {product.price}
                                         </ProductPrice>
                                     </ProductInfoContainer>
-                                    <ProductControlButton>
+                                    <ProductControlButton
+                                        onPress={() =>
+                                            deleteFromCart(product.id)
+                                        }
+                                    >
                                         <Icon
                                             name="delete-forever"
                                             size={25}
@@ -77,7 +81,9 @@ export function Cart({ cart }) {
                                             />
                                         </ProductControlButton>
 
-                                        <AmountInput />
+                                        <AmountInput
+                                            value={String(product.amount)}
+                                        />
                                         <ProductControlButton>
                                             <Icon
                                                 name="remove-circle-outline"
@@ -118,6 +124,7 @@ export function Cart({ cart }) {
 
 Cart.propTypes = {
     cart: PropTypes.array.isRequired,
+    deleteFromCart: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
