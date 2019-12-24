@@ -9,7 +9,6 @@ if (__DEV__) {
     const tron = Reactotron.configure()
         .useReactNative() // add all built-in react native plugins
         .connect({ host: IP_ADDRESS }); // let's connect!
-
     // console -> Global variable -> To give a global access to reactotron
     console.tron = tron;
 

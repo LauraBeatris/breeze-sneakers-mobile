@@ -1,5 +1,6 @@
 import React from 'react';
-
+import { RectButton } from 'react-native-gesture-handler';
+import { Text } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {
@@ -11,7 +12,6 @@ import {
     ProductInfoContainer,
     ProductTitle,
     ProductPrice,
-    ActionButton,
     ProductFooterContainer,
     AmountContainer,
     AmountInput,
@@ -19,6 +19,8 @@ import {
     CartFooterTitle,
     SubTotal,
     Total,
+    SubmitOrderButton,
+    SubmitOrderButtonText,
 } from './styles';
 import { Background } from '../../styles/background';
 import background from '../../assets/background.jpg';
@@ -42,34 +44,34 @@ export default function Main() {
                                 <ProductTitle>Adidas Qt Vult</ProductTitle>
                                 <ProductPrice>$324.23</ProductPrice>
                             </ProductInfoContainer>
-                            <ActionButton>
+                            <RectButton>
                                 <Icon
                                     name="delete-forever"
                                     size={25}
                                     color="#999"
                                 />
-                            </ActionButton>
+                            </RectButton>
                         </MainWrapperProduct>
                         {/* End of main product informations - Image, Title, Price, Subtotal and Delete Option */}
 
                         <ProductFooterContainer>
                             <AmountContainer>
-                                <ActionButton>
+                                <RectButton>
                                     <Icon
                                         name="add-circle-outline"
                                         size={15}
                                         color="#f44336"
                                     />
-                                </ActionButton>
+                                </RectButton>
 
                                 <AmountInput />
-                                <ActionButton>
+                                <RectButton>
                                     <Icon
                                         name="remove-circle-outline"
                                         size={15}
                                         color="#f44336"
                                     />
-                                </ActionButton>
+                                </RectButton>
                             </AmountContainer>
                             <SubTotal>$534.34</SubTotal>
                         </ProductFooterContainer>
@@ -88,34 +90,34 @@ export default function Main() {
                                 <ProductTitle>Adidas Qt Vult</ProductTitle>
                                 <ProductPrice>$324.23</ProductPrice>
                             </ProductInfoContainer>
-                            <ActionButton>
+                            <RectButton>
                                 <Icon
                                     name="delete-forever"
                                     size={25}
                                     color="#999"
                                 />
-                            </ActionButton>
+                            </RectButton>
                         </MainWrapperProduct>
                         {/* End of main product informations - Image, Title, Price, Subtotal and Delete Option */}
 
                         <ProductFooterContainer>
                             <AmountContainer>
-                                <ActionButton>
+                                <RectButton>
                                     <Icon
                                         name="add-circle-outline"
                                         size={15}
                                         color="#f44336"
                                     />
-                                </ActionButton>
+                                </RectButton>
 
-                                <AmountInput />
-                                <ActionButton>
+                                <AmountInput value="2" />
+                                <RectButton>
                                     <Icon
                                         name="remove-circle-outline"
                                         size={15}
                                         color="#f44336"
                                     />
-                                </ActionButton>
+                                </RectButton>
                             </AmountContainer>
                             <SubTotal>$534.34</SubTotal>
                         </ProductFooterContainer>
@@ -125,6 +127,11 @@ export default function Main() {
                         <CartFooterTitle>Total</CartFooterTitle>
                         <Total>$1230.24</Total>
                     </CartFooter>
+                    <SubmitOrderButton>
+                        <SubmitOrderButtonText>
+                            Finalize Order{' '}
+                        </SubmitOrderButtonText>
+                    </SubmitOrderButton>
                 </CartContainer>
             </Container>
         </>

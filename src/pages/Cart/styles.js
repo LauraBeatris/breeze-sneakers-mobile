@@ -4,11 +4,14 @@ import colors from '../../styles/colors';
 
 export const Container = styled.View`
     padding: 12px;
+    /* background: #444; */
+    flex: 1;
 `;
 
 export const CartContainer = styled.View`
     background: ${colors.primary};
     padding: 12px;
+    border-radius: 6px;
 `;
 
 export const Product = styled.View`
@@ -38,7 +41,6 @@ export const ProductPrice = styled.Text`
     font-size: 17px;
     font-weight: bold;
 `;
-export const ActionButton = styled(RectButton)``;
 
 export const ProductFooterContainer = styled.View`
     flex-direction: row;
@@ -52,12 +54,16 @@ export const AmountContainer = styled.View`
     justify-content: center;
 `;
 
-export const AmountInput = styled.TextInput`
-    border: #eee;
-    border-radius: 5px;
-    margin: 0px 5px;
-    height: 5px;
-    width: 55px;
+export const AmountInput = styled.TextInput.attrs({
+    readonly: true,
+    editable: false,
+})`
+    background: #fff;
+    padding: 0px 5px;
+    margin: 0 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    min-width: 52px;
 `;
 
 export const CartFooter = styled.View`
@@ -84,4 +90,18 @@ export const Total = styled.Text`
     font-weight: bold;
 `;
 
-export const SubmitOrderButton = styled(RectButton)``;
+export const SubmitOrderButton = styled(RectButton)`
+    background: #444;
+    padding: 8px 30px;
+    border: 1px solid #333;
+    border-radius: 3px;
+    margin-top: 20px;
+`;
+
+export const SubmitOrderButtonText = styled.Text`
+    text-transform: uppercase;
+    font-size: 17px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+`;
