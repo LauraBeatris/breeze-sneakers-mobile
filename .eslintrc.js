@@ -38,5 +38,7 @@ module.exports = {
     'react/forbid-prop-types': 'off',
     'no-param-reassign': 'off',
     'no-console': ["error", { allow: ['tron']}],
+    'react-hooks/rules-of-hooks': 'warn',
+    'react-hooks/exhaustive-deps': 'warn'
   },
 };

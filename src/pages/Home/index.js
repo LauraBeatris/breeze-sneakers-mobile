@@ -47,6 +47,7 @@ export function Home({ addToCartRequest, amount }) {
                 {products.length > 0 && (
                     <Sneekers
                         data={products}
+                        keyExtrator={item => String(item.id)}
                         renderItem={({ item }) => (
                             <Sneeker>
                                 <SneekerImage source={{ uri: item.image }} />
@@ -77,7 +78,6 @@ export function Home({ addToCartRequest, amount }) {
                                 </AddButton>
                             </Sneeker>
                         )}
-                        keyExtrator={item => item.id}
                     />
                 )}
             </Container>
