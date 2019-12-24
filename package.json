@@ -15,11 +15,11 @@
     "@react-navigation/native": "^5.0.0-alpha.21",
     "@react-navigation/stack": "^5.0.0-alpha.46",
     "axios": "^0.19.0",
-    "json-server": "^0.15.1",
     "polished": "^3.4.2",
     "prop-types": "^15.7.2",
     "react": "16.9.0",
     "react-native": "0.61.5",
+    "react-native-dotenv": "^0.2.0",
     "react-native-gesture-handler": "^1.5.2",
     "react-native-reanimated": "^1.4.0",
     "react-native-safe-area-context": "^0.6.1",
@@ -47,6 +47,7 @@
     "jest": "^24.9.0",
     "metro-react-native-babel-preset": "^0.57.0",
     "prettier": "^1.19.1",
+    "react-native-dotenv": "^0.2.0",
     "react-test-renderer": "16.9.0"
   },
   "jest": {

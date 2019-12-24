@@ -5,22 +5,22 @@ import Logo from '../Logo';
 import { Container, CartContainer, Amount, RedirectWrapper } from './styles';
 
 export default function Header({ navigation }) {
-  return (
-    <Container>
-      <RedirectWrapper onPress={() => navigation.navigate('Home')}>
-        <Logo size={22} />
-      </RedirectWrapper>
+    return (
+        <Container>
+            <RedirectWrapper onPress={() => navigation.navigate('Home')}>
+                <Logo size={22} />
+            </RedirectWrapper>
 
-      <RedirectWrapper onPress={() => navigation.navigate('Cart')}>
-        <CartContainer>
-          <Icon name="shopping-cart" size={30} color="#333" />
-          <Amount>5</Amount>
-        </CartContainer>
-      </RedirectWrapper>
-    </Container>
-  );
+            <RedirectWrapper onPress={() => navigation.navigate('Cart')}>
+                <CartContainer>
+                    <Icon name="shopping-cart" size={30} color="#333" />
+                    <Amount>5</Amount>
+                </CartContainer>
+            </RedirectWrapper>
+        </Container>
+    );
 }
 
 Header.propTypes = {
-  navigation: PropTypes.shape({ navigate: PropTypes.func }).isRequired,
+    navigation: PropTypes.shape({ navigate: PropTypes.func }).isRequired,
 };
