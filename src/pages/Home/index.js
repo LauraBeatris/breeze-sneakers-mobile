@@ -25,7 +25,7 @@ import background from '../../assets/background.jpg';
 
 import api from '../../services/api';
 
-export function Home({ addToCartSuccess }) {
+export function Home({ addToCartRequest, amount }) {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
@@ -52,10 +52,14 @@ export function Home({ addToCartSuccess }) {
                                             size={25}
                                             color="#fff"
                                         />
-                                        <ProductAmountText>6</ProductAmountText>
+                                        <ProductAmountText>
+                                            {amount[item.id] || 0}
+                                        </ProductAmountText>
                                     </ProductAmount>
                                     <AddButtonText
-                                        onPress={() => addToCartSuccess(item)}
+                                        onPress={() =>
+                                            addToCartRequest(item.id)
+                                        }
                                     >
                                         {' '}
                                         Add to the cart{' '}
@@ -72,10 +76,19 @@ export function Home({ addToCartSuccess }) {
 }
 
 Home.propTypes = {
-    addToCartSuccess: PropTypes.func.isRequired,
+    addToCartRequest: PropTypes.func.isRequired,
+    amount: PropTypes.shape().isRequired,
 };
+
+const mapStateToProps = state => ({
+    // Returning an object with the amounts of the current products in the cart
+    amount: state.cart.reduce((amount, product) => {
+        amount[product.id] = product.amount;
+        return amount;
+    }, {}),
+});
 
 const mapDispatchToProps = dispatch =>
     bindActionCreators(CartActions, dispatch);
 
-export default connect(null, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
