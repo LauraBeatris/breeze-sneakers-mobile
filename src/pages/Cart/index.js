@@ -146,7 +146,7 @@ Cart.propTypes = {
     cart: PropTypes.array.isRequired,
     deleteFromCart: PropTypes.func.isRequired,
     updateAmountRequest: PropTypes.func.isRequired,
-    total: PropTypes.number.isRequired,
+    total: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
