@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { formatMoney } from '../../util/format';
@@ -25,21 +23,39 @@ import background from '../../assets/background.jpg';
 
 import api from '../../services/api';
 
-export function Home({ addToCartRequest, amount }) {
+export default function Home() {
     const [products, setProducts] = useState([]);
 
+    const dispatch = useDispatch();
+
+    const amount = useSelector(state =>
+        state.cart.reduce((amountSum, product) => {
+            amountSum[product.id] = product.amount;
+            return amountSum;
+        }, {})
+    );
+
     useEffect(() => {
-        api.get('/products')
-            .then(res =>
-                setProducts(
-                    res.data.map(product => ({
-                        ...product,
-                        formattedPrice: formatMoney(product.price),
-                    }))
+        async function getProducts() {
+            await api
+                .get('/products')
+                .then(res =>
+                    setProducts(
+                        res.data.map(product => ({
+                            ...product,
+                            formattedPrice: formatMoney(product.price),
+                        }))
+                    )
                 )
-            )
-            .catch(err => console.tron.log(err));
+                .catch(err => console.tron.log(err));
+        }
+        getProducts();
     }, []);
+
+    function handleAddProduct(id) {
+        return dispatch(CartActions.addToCartRequest(id));
+    }
+
     return (
         <>
             <Background source={background} />
@@ -69,7 +85,7 @@ export function Home({ addToCartRequest, amount }) {
                                     </ProductAmount>
                                     <AddButtonText
                                         onPress={() =>
-                                            addToCartRequest(item.id)
+                                            handleAddProduct(item.id)
                                         }
                                     >
                                         {' '}
@@ -84,21 +100,3 @@ export function Home({ addToCartRequest, amount }) {
         </>
     );
 }
-
-Home.propTypes = {
-    addToCartRequest: PropTypes.func.isRequired,
-    amount: PropTypes.shape().isRequired,
-};
-
-const mapStateToProps = state => ({
-    // Returning an object with the amounts of the current products in the cart
-    amount: state.cart.reduce((amount, product) => {
-        amount[product.id] = product.amount;
-        return amount;
-    }, {}),
-});
-
-const mapDispatchToProps = dispatch =>
-    bindActionCreators(CartActions, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
